@@ -1,0 +1,11 @@
+Projektaufteilung:
+*1: GUI - Java Swing
+*2: Plakatdesigner API
+*3: Rechenmaster und Algomanager
+*4: Dateiverwaltung + Dateiformat - Einlesen und Abspeichern - Softwarearchitektur
+
+Personen:
+Paul Babits: 3
+Daniel Hofer: 2
+Lukas Hackl: 1
+Bernhard Mayr: 4

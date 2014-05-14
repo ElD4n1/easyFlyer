@@ -1,0 +1,8 @@
+
+Dateiverwaltung:
+Datei abspeichern (temp. Dateiformat als Arbeitsdatei, .esf Dateiformat für Endplakat, Dateikompression, Metadaten)
+Datei einlesen (.esf + evtl. andere Dateiformate)
+Dateisystemverwaltung (Ordnerstruktur im Programmverzeichnis bzw. Eigene Dokumente)
+
+Softwarearchitektur:
+Zusammenarbeit der Schnittstellen

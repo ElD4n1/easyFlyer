@@ -1,0 +1,24 @@
+
+Classes:
+
+Plakatelemente:
+TextField: Font, Schriftgröße, ...
+Image: Format, Größe, Transparenz, ...
+Form: (Mit Füllung)
+	Line
+	Circle
+	Rectangle
+	Square
+Schemata (Vorlagen)
+Hintergrund setzen
+
+GUI-API:
+Zoomfaktor
+Auswahl - Größe ändern
+Verschieben
+Einfügen, Kopieren, Ausschneiden, Löschen
+Vorschaubild generieren
+Bildoperationen: Zuschneiden, Drehen, Größe, Farbkanal, Rahmen (Decorater Pattern), Effekte - Transformationen (Red-Eye, Optische Anreize) - Evtl. auf anderes Programm verlinken
+
+Interprogrammkommunikation:
+Paint (paint.exe -Bildpfad), Excel, Word, PowerPoint - Kopieren, Abhängigkeit von Office-File

@@ -2,15 +2,15 @@
 Classes:
 
 Plakatelemente:
-TextField: Font, Schriftgröße, ...
-Image: Format, Größe, Transparenz, ...
-Form: (Mit Füllung)
+->TextField: Font, Schriftgröße, ...
+->Image: Format, Größe, Transparenz, ...
+->Form: (Mit Füllung)
 	Line
 	Circle
 	Rectangle
 	Square
 Schemata (Vorlagen)
-Hintergrund setzen
+->Hintergrund setzen
 
 GUI-API:
 Zoomfaktor

@@ -1,4 +1,3 @@
-
 Dateiverwaltung:
 Datei abspeichern (temp. Dateiformat als Arbeitsdatei, .esf Dateiformat für Endplakat, Dateikompression, Metadaten)
 Datei einlesen (.esf + evtl. andere Dateiformate)

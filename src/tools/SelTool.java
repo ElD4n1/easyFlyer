@@ -53,7 +53,7 @@ public class SelTool extends Tool {
 	 *            the shape model
 	 */
 	public SelTool(ToolPalette palette) {  //TODO Model in Konstruktor einfügen
-		super("Sel", new ImageIcon("icons/sel.png"), palette);
+		super("Auswahl", new ImageIcon("icons/sel.png"), palette);
 		// TODO Model speichern
 		putValue(Action.SHORT_DESCRIPTION, "Selection tool");
 	}

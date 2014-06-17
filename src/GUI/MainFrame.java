@@ -9,7 +9,6 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
 import dataTyps.ListColor;
-import sun.awt.VerticalBagLayout;
 import tools.LoupeTool;
 import tools.SelTool;
 import tools.ToolPalette;
@@ -152,7 +151,7 @@ public class MainFrame {
 
 	private void initPicturControl(JPanel pane) {
 
-		pane.setLayout(new VerticalBagLayout());
+		pane.setLayout(new BoxLayout(contentpane, BoxLayout.Y_AXIS));
 
 		JPanel pfilechooserpane = new JPanel();
 		JPanel ptranspane = new JPanel();
@@ -234,7 +233,7 @@ public class MainFrame {
 	}
 
 	private void initTextControl(JPanel pane) {
-		pane.setLayout(new VerticalBagLayout());
+		pane.setLayout(new BoxLayout(contentpane, BoxLayout.Y_AXIS));
 
 		JPanel tfontpane = new JPanel();
 		JPanel tsizepane = new JPanel();
@@ -282,7 +281,7 @@ public class MainFrame {
 	}
 
 	private void initShapeControl(JPanel pane) {
-		pane.setLayout(new VerticalBagLayout());
+		pane.setLayout(new BoxLayout(contentpane, BoxLayout.Y_AXIS));
 
 		JPanel schooserpane = new JPanel();
 		JPanel scolorpane = new JPanel();

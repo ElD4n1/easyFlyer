@@ -6,7 +6,6 @@ import java.awt.event.ActionListener;
 
 import javax.swing.*;
 
-import sun.awt.VerticalBagLayout;
 import dataTyps.Format;
 
 public class DokumentSettingFrame {
@@ -63,7 +62,7 @@ public class DokumentSettingFrame {
 		
 		contentpane = new Container();
 		
-		contentpane.setLayout(new VerticalBagLayout());
+		contentpane.setLayout(new BoxLayout(contentpane, BoxLayout.Y_AXIS));
 		
 		name = new JTextField();
 		name.setPreferredSize(MainFrame.TEXTFIELD_DIMENSION);

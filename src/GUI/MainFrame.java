@@ -3,12 +3,16 @@ package GUI;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.IOException;
 
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
 import dataTyps.ListColor;
+import easyFlyer.api.GuiApi;
+import easyFlyer.model.ImageComponent;
 import tools.LoupeTool;
 import tools.SelTool;
 import tools.ToolPalette;
@@ -17,6 +21,11 @@ public class MainFrame {
 
 	JFrame frame;
 	Container contentpane;
+	
+	GuiApi model;
+	
+	private ImageComponent curPicture;
+	private TextComponent curText;
 
 	// Konstanten
 	public static final int ICONSIZE = 15;
@@ -45,6 +54,10 @@ public class MainFrame {
 //	private JSlider ttransslider;
 //	private JTextField ttransfield;
 
+	// Layoutmanager für Controllpanel
+	private LayoutManager controllLayout = new GridLayout(0,1);
+	
+	
 	// Felder für picturcontrolpanel
 	private JTextField ploadfile;
 	private JButton pfilechooserdbtn;
@@ -58,6 +71,8 @@ public class MainFrame {
 	private JTextField pframepixels;
 	private JTextField ptransfield;
 
+	
+	
 	// Felder für picturecontrolpanel
 	//TODO Ändern auf Klasse Shape die sich selber zeichen kann (zb. Clonbares objekt)
 	private final String[] SHAPESTRING = { "Rechteck", "Kreis", "Dreieck",
@@ -68,6 +83,7 @@ public class MainFrame {
 	private JTextField sheight;
 	private JTextField stransfield;
 	private JSlider stransslider;
+	
 
 	// Felder für edittoolpanel
 	JSlider zoomslider;
@@ -151,7 +167,8 @@ public class MainFrame {
 
 	private void initPicturControl(JPanel pane) {
 
-		pane.setLayout(new BoxLayout(contentpane, BoxLayout.Y_AXIS));
+		
+		pane.setLayout(controllLayout);
 
 		JPanel pfilechooserpane = new JPanel();
 		JPanel ptranspane = new JPanel();
@@ -233,12 +250,13 @@ public class MainFrame {
 	}
 
 	private void initTextControl(JPanel pane) {
-		pane.setLayout(new BoxLayout(contentpane, BoxLayout.Y_AXIS));
+		pane.setLayout(controllLayout);
 
 		JPanel tfontpane = new JPanel();
 		JPanel tsizepane = new JPanel();
 		JPanel tcolorpane = new JPanel();
 		JPanel tpositionpane = new JPanel();
+		
 
 
 		tfontpane.setLayout(new FlowLayout(FlowLayout.LEADING));
@@ -252,8 +270,7 @@ public class MainFrame {
 		tsizefield = new JTextField("12");
 		tsizefield.setPreferredSize(NUMBERFIELD_DIMENSION);
 		tcolorchooser = new JComboBox<ListColor>(COLORLIST);
-		tposition = new JComboBox<String>(POSITIONSTRING);
-
+		tposition = new JComboBox<String>(POSITIONSTRING);		
 		
 		tfontchooser.addActionListener(textchangedHandler);
 		tsizefield.addActionListener(textchangedHandler);
@@ -281,7 +298,7 @@ public class MainFrame {
 	}
 
 	private void initShapeControl(JPanel pane) {
-		pane.setLayout(new BoxLayout(contentpane, BoxLayout.Y_AXIS));
+		pane.setLayout(controllLayout);
 
 		JPanel schooserpane = new JPanel();
 		JPanel scolorpane = new JPanel();
@@ -419,49 +436,56 @@ public class MainFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				DokumentSettingFrame settings = new DokumentSettingFrame();
 				JOptionPane.showMessageDialog(frame, settings);
-				System.out.println("Neues File erstellen" + settings.getModel());
+				System.out.println("Neues File erstellen" + settings.getName());
+				model.newFile(settings.getName(), settings.getHeight(), settings.getWidth(), settings.getBorder());
 			}
 		};
 		openFileHandler = new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// Eine neue Datei laden
-				System.out.println("File laden");
+				JFileChooser chooser = new JFileChooser();
+				if (chooser.showOpenDialog(frame) == JFileChooser.APPROVE_OPTION) {
+					File file = chooser.getSelectedFile();
+					model.loadFile(file);
+				} 
 			}
 		};
 		saveFileHander = new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// Eine Datei speichern
-				System.out.println("Speichern");
-				saved=true;
+				save();
 			}
 		};
 		saveasFileHandler = new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// Speichern unter
-				System.out.println("Speichern unter");
-				saved=true;
+				saveas();
 			}
 		};
+		
 		exportFileHandler = new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// Datei exportieren
-				System.out.println("Export File");
+				JFileChooser chooser = new JFileChooser();
+				if (chooser.showOpenDialog(frame) == JFileChooser.APPROVE_OPTION) {
+					File file = chooser.getSelectedFile();
+					model.exportFile(file);
+				}
 			}
 		};
 		exportProjectHandler = new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// Alle Dateien des Projekts in Ordner laden
-				System.out.println("Export Ordner");
+				JFileChooser chooser = new JFileChooser();
+				if (chooser.showOpenDialog(frame) == JFileChooser.APPROVE_OPTION) {
+					File file = chooser.getSelectedFile();
+					model.exportFolder(file);
+				}
 			}
 		};
 		docsettingHandler = new ActionListener() {
@@ -470,7 +494,7 @@ public class MainFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				DokumentSettingFrame settings = new DokumentSettingFrame();
 				JOptionPane.showMessageDialog(frame, settings.getContentpane());
-				System.out.println(settings.getModel());
+				model.changeDoumentSettings(settings.getName(), settings.getHeight(), settings.getWidth(), settings.getBorder());
 			}
 		};
 		closeFileHandler = new ActionListener() {
@@ -481,8 +505,9 @@ public class MainFrame {
 				if(saved){
 					frame.dispose();
 				} else {
-					System.out.println("Vorher speichern?");
-					//Datei speichern
+					if( JOptionPane.showConfirmDialog(frame, "Wollen Sie vorher speichern?") == JOptionPane.OK_OPTION ) {
+						save();
+					}
 				}
 			}
 		};
@@ -490,16 +515,23 @@ public class MainFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				//Open Filechooser
-				System.out.println("Filechooser Dialog");
+				JFileChooser chooser = new JFileChooser();
+				File file;
+				if (chooser.showOpenDialog(frame) == JFileChooser.APPROVE_OPTION) {
+					file = chooser.getSelectedFile();
+					try {
+						curPicture = new ImageComponent(file);
+					} catch (IOException e1) {
+						JOptionPane.showMessageDialog(frame, "Bild konnte nicht geladen werden.");
+					}
+				}	
 			}
 		};
 		insertPictureHandler = new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// Bild darstellen
-				System.out.println("Bild einfügen");
+				model.addPicture(curPicture);
 			}
 		};
 		ptransHandler = new ChangeListener() {
@@ -507,6 +539,7 @@ public class MainFrame {
 			@Override
 			public void stateChanged(ChangeEvent e) {
 				ptransfield.setText(ptransslider.getValue()+"");
+				// TODO Transparenz ändern image direkt an Paul
 			}
 		};
 		ptransfieldHandler = new ActionListener() {
@@ -532,7 +565,7 @@ public class MainFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				//Bild skaliert darstellen
+				// TODO resize the image direkt an Paul
 				System.out.println("Bild skalieren Faktor: " + pskalefield.getText());
 			}
 		};
@@ -540,6 +573,7 @@ public class MainFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				// TODO (Paul) größe des dargestellten bildes ändern, oder decorater für ramen ändern/hinzufügen
 				//Frame wurde umgestellt. alle informationen abfragen (von allen 
 				//Im Model ein decorator pattern vor dem Bild erzeugen/ändern
 			}
@@ -548,7 +582,9 @@ public class MainFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				//Ändere Texteigenschaften im Model, daruch soll es ein Repaint geben. 
+				
+				model.addText(curText);
+				
 				
 			}
 		};
@@ -586,5 +622,24 @@ public class MainFrame {
 				stransfield.setText(stransslider.getValue()+"");
 			}
 		};
+	}
+	
+	private void saveas(){
+		JFileChooser chooser = new JFileChooser();
+		if (chooser.showOpenDialog(frame) == JFileChooser.APPROVE_OPTION) {
+			File file = chooser.getSelectedFile();
+			model.saveFile(file);
+		}
+		saved=true;
+	}
+	
+	private void save(){
+		File file = model.getFilePath();
+		if(file== null) {
+			saveas();
+		} else {
+			model.saveFile(file);
+			saved=true;
+		}
 	}
 }

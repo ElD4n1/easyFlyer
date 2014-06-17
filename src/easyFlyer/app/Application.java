@@ -1,9 +1,11 @@
 package easyFlyer.app;
 
+import GUI.MainFrame;
+
 public class Application {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+		new MainFrame();
 
 	}
 

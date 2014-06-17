@@ -43,19 +43,54 @@ public class DokumentSettingFrame {
 			height.setText(swap);
 		}
 	};
-	
-//	public Model getModel(){
-//		//Return Model
-//	}
-	// Übergabeparameter soll das Model sein, in welches die Daten gespeichert werden und falls vorhanden geladen
+		
 	public DokumentSettingFrame(){
 		initUI();
 	}
 	//Methode soll später das Model zurück geben
-	public String getModel(){
-		// Erstellen des Model und Rückgabe
-		
+	/**
+	 * Returns set name of the flyer
+	 * @return name of the flyer
+	 */
+	public String getName(){
 		return name.getText();
+	}
+	/**
+	 * Returns the height from the Documentsettingspanel. 
+	 * -1 if there is no Integer
+	 * @return set height 
+	 */
+	public int getHeight() {
+		try { 
+		return Integer.parseInt(height.getText());	
+		} catch ( NumberFormatException e) {
+			return -1;
+		}
+		
+	}
+	/**
+	 * Returns the width from the Documentsettingspanel. 
+	 * -1 if there is no Integer
+	 * @return set width 
+	 */
+	public int getWidth() {
+		try { 
+			return Integer.parseInt(width.getText());	
+			} catch ( NumberFormatException e) {
+				return -1;
+			}
+	}
+	/**
+	 * Returns the bordersize from the Documentsettingspanel. 
+	 * 0 as default
+	 * @return set border 
+	 */
+	public int getBorder() {
+		try { 
+			return Integer.parseInt(border.getText());	
+			} catch ( NumberFormatException e) {
+				return 0;
+			}
 	}
 	
 	private void initUI(){

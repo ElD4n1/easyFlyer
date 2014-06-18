@@ -21,7 +21,7 @@ public class GuiApi_Impl implements GuiApi {
 	private Flyer flyer;
 	
 	@Override
-	public void newFile(String author, String name, String description, int height, int width, int border) {
+	public void newFile(String author, String name, String filename, String description, int height, int width, int border) {
 		// TODO Auto-generated method stub
 		this.flyer = new Flyer(name, height, width, border);
 		

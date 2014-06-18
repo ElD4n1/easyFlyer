@@ -24,7 +24,6 @@ public class GuiApi_Impl implements GuiApi {
 	private String description;
 	private Flyer flyer;
 	private Graphics graphics;
-	private MouseEvent selectedCoords;
 	private FlyerComponent selectedComponent;
 	
 	@Override
@@ -97,10 +96,15 @@ public class GuiApi_Impl implements GuiApi {
 
 	@Override
 	public FlyerComponent chooseComponent(MouseEvent me) {
-		int x = me.getX();
-		int y = me.getY();
+		ArrayList<FlyerComponent> components = flyer.getComponents();
+		for(FlyerComponent component : components){
+			if(component.getBounds().contains(me.getPoint())){
+				this.selectedComponent = component;
+				return component;
+			}
+		}
 		
-		return null; //TODO
+		return null;
 	}
 
 	@Override
@@ -110,11 +114,16 @@ public class GuiApi_Impl implements GuiApi {
 
 	@Override
 	public void removeComponent(MouseEvent event) {
-		//TODO
+		ArrayList<FlyerComponent> components = flyer.getComponents();
+		for(FlyerComponent component : components){
+			if(component.getBounds().contains(event.getPoint())){
+				this.flyer.removeComponent(component);
+			}
+		}
 	}
 
 	@Override
-	public FlyerComponent getSelected() { //TODO
+	public FlyerComponent getSelected() {
 		return this.selectedComponent;
 	}
 

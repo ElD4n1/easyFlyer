@@ -89,19 +89,27 @@ public interface GuiApi {
 	public void addPicture(BufferedImage image);
 	
 	/**
-	 * Selcets a {@link FlyerComponent} in the panel and returns the component
+	 * Selcets a {@link FlyerComponent} in the panel and saves the selected
 	 * @param me
 	 * 		the {@link MouseEvent} 
-	 * @return
-	 * 		the {@link FlyerComponent} at the position
 	 */
-	public FlyerComponent chooseComponent(MouseEvent me);
+	public void chooseComponent(MouseEvent me);
 	
 	/**
-	 * Adds a {@link TextComponent} to the model
-	 * @param text
-	 * 		{@link TextComponent} to add
+	 * Selcets a {@link FlyerComponent} in the panel and saves the selected
+	 * @param me
+	 * 		the {@link MouseEvent} 
 	 */
+<<<<<<< HEAD
+	
+	public void addText(TextComponent text);
+	
+	/**
+	 * Returns selected {@link FlyerComponent}
+	 * @return selected component
+	 */
+	public FlyerComponent getSelected();
+=======
 	public void addText(String text);
 	
 	/**

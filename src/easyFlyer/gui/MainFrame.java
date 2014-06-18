@@ -3,11 +3,9 @@ package easyFlyer.gui;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
@@ -26,8 +24,8 @@ public class MainFrame {
 	
 	GuiApi model;
 	
-	private BufferedImage curPicture;
-	private String curText;
+	private ImageComponent curPicture;
+	private TextComponent curText;
 
 	// Konstanten
 	public static final int ICONSIZE = 15;
@@ -437,7 +435,7 @@ public class MainFrame {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				DokumentSettingFrame settings = new DokumentSettingFrame();
-				JOptionPane.showMessageDialog(frame, settings);
+				JOptionPane.showMessageDialog(frame, settings.getContentpane());
 				System.out.println("Neues File erstellen" + settings.getName());
 				model.newFile(settings.getName(), settings.getHeight(), settings.getWidth(), settings.getBorder());
 			}
@@ -522,7 +520,7 @@ public class MainFrame {
 				if (chooser.showOpenDialog(frame) == JFileChooser.APPROVE_OPTION) {
 					file = chooser.getSelectedFile();
 					try {
-					    curPicture = ImageIO.read(file);
+						curPicture = new ImageComponent(file);
 					} catch (IOException e1) {
 						JOptionPane.showMessageDialog(frame, "Bild konnte nicht geladen werden.");
 					}

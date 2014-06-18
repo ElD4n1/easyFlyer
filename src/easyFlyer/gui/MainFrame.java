@@ -577,7 +577,7 @@ public class MainFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				model.addPicture(curPicture);
+				//model.addPicture(curPicture);
 			}
 		};
 		ptransHandler = new ChangeListener() {
@@ -629,7 +629,7 @@ public class MainFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				
-				model.addText("neuer Text");
+				//model.addText("neuer Text");
 				
 				
 			}

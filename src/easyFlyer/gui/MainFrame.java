@@ -3,6 +3,8 @@ package easyFlyer.gui;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -424,6 +426,39 @@ public class MainFrame {
 		// Bearbeitungswerkzeuge
 		initEditControl(edittoolPanel);
 		
+		//Drawing Panel
+		drawingPanel.addMouseListener(new MouseListener() {
+			
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mousePressed(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseExited(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				model.chooseComponent(e);
+				
+			}
+		});
 
 		contentpane.add(edittoolPanel, BorderLayout.NORTH);
 		contentpane.add(drawingPanel, BorderLayout.CENTER);
@@ -445,7 +480,7 @@ public class MainFrame {
 				JFileChooser chooser = new JFileChooser();
 				if (chooser.showOpenDialog(frame) == JFileChooser.APPROVE_OPTION) {
 					File file = chooser.getSelectedFile();
-					model.newFile(settings.getAutor(), settings.getDescripton(), settings.getName(),file.getAbsolutePath(), settings.getHeight(), settings.getWidth(), settings.getBorder()); 
+					model.newFile(settings.getAutor(), settings.getDescripton(), settings.getName(),file.getPath(), settings.getHeight(), settings.getWidth(), settings.getBorder()); 
 				}
 			}
 		};

@@ -13,6 +13,7 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
 import easyFlyer.api.GuiApi;
+import easyFlyer.api.GuiApi_Impl;
 import easyFlyer.dataTypes.ListColor;
 import easyFlyer.model.ImageComponent;
 import easyFlyer.tools.LoupeTool;
@@ -389,6 +390,9 @@ public class MainFrame {
 		// Menü bauen
 		initMenu();
 
+		// Model erzeugen
+		this.model = new GuiApi_Impl();
+		
 		// Panel im Frame aufbauen
 		contentpane = frame.getContentPane();
 		contentpane.setLayout(new BorderLayout());

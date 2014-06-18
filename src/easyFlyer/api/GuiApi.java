@@ -29,7 +29,7 @@ public interface GuiApi {
 	 * 		size of the border around the flyer
 	 * @return
 	 */
-	public void newFile(String author, String name, String filename, String description, int height, int width, int border, Graphics g);
+	public void newFile(String author, String name, String filename, String description, int height, int width, int border);
 	
 	/**
 	 * Loads a file and saves the flyer as model.

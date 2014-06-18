@@ -1,7 +1,7 @@
 Projektaufteilung:
 *1: GUI - Java Swing
 *2: Plakatdesigner API
-*3: Rechenmaster und Algomanager
+*3: Design Patterns
 *4: Dateiverwaltung + Dateiformat - Einlesen und Abspeichern - Softwarearchitektur
 
 Personen:

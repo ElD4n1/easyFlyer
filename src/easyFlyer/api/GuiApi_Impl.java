@@ -26,13 +26,17 @@ public class GuiApi_Impl implements GuiApi {
 	private Graphics graphics;
 	private FlyerComponent selectedComponent;
 	
+	public GuiApi_Impl(Graphics g){
+		this.graphics = g;
+		this.newFile("", "", "/new_flyer.esf", "", 800, 600, 1);
+	}
+	
 	@Override
-	public void newFile(String author, String name, String filename, String description, int height, int width, int border, Graphics g) {
+	public void newFile(String author, String name, String filename, String description, int height, int width, int border) {
 		this.flyer = new Flyer(name, height, width, border);
 		this.author = author;
 		this.description = description;
 		this.filename = filename;
-		this.graphics = g;
 		
 		try {
 			Save.save(flyer.getComponents(), new Header(author, description), filename, "temp"); 
@@ -129,10 +133,6 @@ public class GuiApi_Impl implements GuiApi {
 
 	@Override
 	public void paintComponents() {
-		ArrayList<FlyerComponent> components = flyer.getComponents();
-		
-		for(FlyerComponent component : components){
-			component.paintComponent(this.graphics);
-		}
+		this.flyer.paint(this.graphics);
 	}
 }

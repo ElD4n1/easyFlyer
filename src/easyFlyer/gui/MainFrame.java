@@ -395,7 +395,7 @@ public class MainFrame {
 		initMenu();
 
 		// Model erzeugen
-		this.model = new GuiApi_Impl();
+		this.model = new GuiApi_Impl(drawingPanel.getGraphics());
 		
 		// Panel im Frame aufbauen
 		contentpane = frame.getContentPane();
@@ -482,7 +482,7 @@ public class MainFrame {
 				JFileChooser chooser = new JFileChooser();
 				if (chooser.showOpenDialog(frame) == JFileChooser.APPROVE_OPTION) {
 					File file = chooser.getSelectedFile();
-					model.newFile(settings.getAutor(), settings.getDescripton(), settings.getName(),file.getPath(), settings.getHeight(), settings.getWidth(), settings.getBorder(), drawingPanel.getGraphics()); 
+					model.newFile(settings.getAutor(), settings.getDescripton(), settings.getName(),file.getPath(), settings.getHeight(), settings.getWidth(), settings.getBorder()); 
 				}
 			}
 		};

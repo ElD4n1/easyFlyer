@@ -12,13 +12,11 @@ import easyFlyer.dataTypes.Format;
  * @author Daniel
  *
  */
-public class Flyer{
+public class Flyer {
 
 	// Hintergrund
 	private String name; // Eigener NAme oder Formatname?? TODO
-	private Format format; // TODO wann brauchen?
-	private int width; // Oder drauf scheissen und Format hernehmen?
-	private int height;
+	private Format format;
 	private int border;
 	
 	private ArrayList<FlyerComponent> components;
@@ -31,8 +29,9 @@ public class Flyer{
 	}
 
 	public void paint(Graphics g) {
-		// TODO Auto-generated method stub
-		
+		for(FlyerComponent component : components){
+			component.paintComponent(g);
+		}
 	}
 	
 	public String getName(){

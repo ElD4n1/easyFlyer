@@ -1,6 +1,7 @@
 package easyFlyer.api;
 
 import java.awt.Graphics;
+import java.awt.Point;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -26,13 +27,12 @@ public class GuiApi_Impl implements GuiApi {
 	private Graphics graphics;
 	private FlyerComponent selectedComponent;
 	
-	public GuiApi_Impl(Graphics g){
-		this.graphics = g;
-		this.newFile("", "", "/new_flyer.esf", "", 800, 600, 1);
+	public GuiApi_Impl(){
+		this.newFile("", "", "new_flyer.esf", "", 800, 600, 1);
 	}
 	
 	@Override
-	public void newFile(String author, String name, String filename, String description, int height, int width, int border) {
+	public void newFile(String author, String name, String filename , String description , int height, int width, int border) {
 		this.flyer = new Flyer(name, height, width, border);
 		this.author = author;
 		this.description = description;
@@ -99,21 +99,25 @@ public class GuiApi_Impl implements GuiApi {
 	}
 
 	@Override
-	public FlyerComponent chooseComponent(MouseEvent me) {
+	public void chooseComponent(Point pt) {
 		ArrayList<FlyerComponent> components = flyer.getComponents();
 		for(FlyerComponent component : components){
-			if(component.getBounds().contains(me.getPoint())){
+			if(component.getBounds().contains(pt)){
 				this.selectedComponent = component;
-				return component;
+		
+				return;
 			}
 		}
 		
-		return null;
+		selectedComponent = null;
 	}
 
 	@Override
-	public void addText(String text, int x, int y) {
-		this.flyer.addComponent(new TextComponent(text, x, y));
+	public void addText(String text, int x, int y , int width , int height) {
+		TextComponent temp = new TextComponent(text , x , y);
+		temp.getBounds().setSize(width , height);
+		
+		this.flyer.addComponent(temp);
 	}
 
 	@Override
@@ -132,7 +136,17 @@ public class GuiApi_Impl implements GuiApi {
 	}
 
 	@Override
-	public void paintComponents() {
-		this.flyer.paint(this.graphics);
+	public void paintComponents(Graphics g) {
+		this.flyer.paint(g);
+	}
+	
+	public void moveComponent(Point pt)
+	{
+		if(selectedComponent == null)
+		{
+			return;
+		}
+		
+		selectedComponent.getBounds().setLocation(pt);
 	}
 }

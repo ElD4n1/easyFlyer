@@ -20,7 +20,7 @@ public class TextComponent
 	
 	public void paintComponent(Graphics g)
 	{
-		g.drawString(text , bounds.x , bounds.y);
+		g.drawString(text , bounds.x , bounds.y + bounds.height);
 	}
 	
 	public String getText(){return text;}

@@ -70,7 +70,7 @@ public class SelTool extends Tool {
 	 */
 	@Override
 	public void mouseClicked(MouseEvent me) {
-		model.chooseComponent(me);
+		model.chooseComponent(me.getPoint());
 	}
 
 	@Override

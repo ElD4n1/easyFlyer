@@ -2,6 +2,7 @@
 package easyFlyer.api;
 
 import java.awt.Graphics;
+import java.awt.Point;
 import java.awt.TextComponent;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
@@ -94,9 +95,9 @@ public interface GuiApi {
 	 * @param me
 	 * 		the {@link MouseEvent} 
 	 */
-	public FlyerComponent chooseComponent(MouseEvent me);
+	public void chooseComponent(Point pt);
 	
-	public void addText(String text, int x, int y);
+	public void addText(String text, int x, int y , int width , int height);
 	
 	/**
 	 * Returns selected {@link FlyerComponent}
@@ -111,5 +112,7 @@ public interface GuiApi {
 	 */
 	public void removeComponent(MouseEvent event);
 	
-	public void paintComponents();
+	public void moveComponent(Point pt);
+	
+	public void paintComponents(Graphics g);
 }

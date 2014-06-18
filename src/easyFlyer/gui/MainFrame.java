@@ -5,6 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionAdapter;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -17,8 +18,7 @@ import javax.swing.event.ChangeListener;
 import easyFlyer.api.GuiApi;
 import easyFlyer.api.GuiApi_Impl;
 import easyFlyer.dataTypes.ListColor;
-
-
+import easyFlyer.model.FlyerComponent;
 import easyFlyer.tools.LoupeTool;
 import easyFlyer.tools.SelTool;
 import easyFlyer.tools.ToolPalette;
@@ -393,18 +393,24 @@ public class MainFrame {
 		
 		// Menü bauen
 		initMenu();
-
+		
 		// Model erzeugen
-		this.model = new GuiApi_Impl(drawingPanel.getGraphics());
+		this.model = new GuiApi_Impl();
 		
 		// Panel im Frame aufbauen
 		contentpane = frame.getContentPane();
 		contentpane.setLayout(new BorderLayout());
 
-		drawingPanel = new JPanel();
+		drawingPanel = new JPanel(){
+			@Override
+			public void paintComponent(Graphics g)
+			{
+				model.paintComponents(g);
+			}
+		};
 		JTabbedPane controlPanel = new JTabbedPane();
 		JPanel edittoolPanel = new JPanel();
-
+		
 		edittoolPanel.setBorder(BorderFactory
 				.createTitledBorder("Bearbeitungs Werkzeuge"));
 		drawingPanel.setBorder(BorderFactory.createEtchedBorder());
@@ -439,8 +445,7 @@ public class MainFrame {
 			
 			@Override
 			public void mousePressed(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
+				model.chooseComponent(e.getPoint());
 			}
 			
 			@Override
@@ -457,8 +462,17 @@ public class MainFrame {
 			
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				model.chooseComponent(e);
 			}
+		});
+		
+		drawingPanel.addMouseMotionListener(new MouseMotionAdapter(){
+			 @Override
+			 public void mouseDragged(MouseEvent e)
+			 {
+				 model.moveComponent(e.getPoint());
+				 
+				 frame.repaint();
+			 }
 		});
 		
 
@@ -567,6 +581,8 @@ public class MainFrame {
 					file = chooser.getSelectedFile();
 					try {
 						curPicture = ImageIO.read(file);
+						
+						ploadfile.setText(file.getAbsolutePath());
 					} catch (IOException e1) {
 						JOptionPane.showMessageDialog(frame, "Bild konnte nicht geladen werden.");
 					}
@@ -577,7 +593,9 @@ public class MainFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				//model.addPicture(curPicture);
+				model.addPicture(curPicture, 50, 50);
+
+				frame.repaint();
 			}
 		};
 		ptransHandler = new ChangeListener() {
@@ -628,9 +646,23 @@ public class MainFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				String nText = text.getText();
 				
-				//model.addText("neuer Text");
+				int stringSize = 12;
+				try
+				{
+					Integer.parseInt(tsizefield.getText());
+				}catch(NumberFormatException ex){}
 				
+				Font font = new Font((String) tfontchooser.getSelectedItem() , 
+						Font.PLAIN , stringSize);
+				
+				int width = frame.getGraphics().getFontMetrics(font).stringWidth(nText);
+				int height = frame.getGraphics().getFontMetrics(font).getHeight();
+				
+				model.addText(text.getText() , 50 , 50 , width , height);
+				
+				frame.repaint();
 				
 			}
 		};

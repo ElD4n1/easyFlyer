@@ -110,7 +110,7 @@ public class Save {
 	private static File createFile(String fileName)
 		throws IOException
 	{
-		File file = new File(fileName);
+		File file = new File(fileName).getAbsoluteFile();
 		
 		if(!file.exists())
 		{

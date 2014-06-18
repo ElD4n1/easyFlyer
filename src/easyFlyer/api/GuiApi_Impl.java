@@ -77,7 +77,7 @@ public class GuiApi_Impl implements GuiApi {
 	}
 
 	@Override
-	public void exportFolder(File file) { //TODO wegtun??
+	public void exportFolder(File file) { //TODO
 	}
 
 	@Override

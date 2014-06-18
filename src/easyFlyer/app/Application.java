@@ -1,6 +1,6 @@
 package easyFlyer.app;
 
-import GUI.MainFrame;
+import easyFlyer.gui.MainFrame;
 
 public class Application {
 

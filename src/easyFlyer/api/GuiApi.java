@@ -103,4 +103,11 @@ public interface GuiApi {
 	 * 		{@link TextComponent} to add
 	 */
 	public void addText(String text);
+	
+	/**
+	 * Removes the clicked {@link FlyerComponent} from the model
+	 * @param event
+	 * 		{@link MouseEvent} with coordinates
+	 */
+	public void removeComponent(MouseEvent event);
 }

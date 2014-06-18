@@ -6,7 +6,7 @@ package easyFlyer.model;
 import java.awt.Graphics;
 import java.util.ArrayList;
 
-import dataTyps.Format;
+import easyFlyer.dataTypes.Format;
 
 /**
  * @author Daniel

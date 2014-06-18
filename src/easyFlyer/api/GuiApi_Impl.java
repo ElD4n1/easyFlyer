@@ -105,5 +105,9 @@ public class GuiApi_Impl implements GuiApi {
 		this.flyer.addComponent(new TextComponent(text));
 	}
 
-	// TODO Whatse with Removing Baby?
+	@Override
+	public void removeComponent(MouseEvent event) {
+		// TODO Auto-generated method stub
+		
+	}
 }

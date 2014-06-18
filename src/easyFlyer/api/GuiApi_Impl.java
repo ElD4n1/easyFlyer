@@ -5,6 +5,7 @@ import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.zip.ZipException;
 
 import easyFlyer.file.FileFormatNotSupportedException;
@@ -119,7 +120,10 @@ public class GuiApi_Impl implements GuiApi {
 
 	@Override
 	public void paintComponents() {
-		// TODO Auto-generated method stub
+		ArrayList<FlyerComponent> components = flyer.getComponents();
 		
+		for(FlyerComponent component : components){
+			component.paintComponent(this.graphics);
+		}
 	}
 }

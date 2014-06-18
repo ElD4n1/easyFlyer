@@ -3,9 +3,11 @@ package easyFlyer.gui;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
@@ -24,8 +26,8 @@ public class MainFrame {
 	
 	GuiApi model;
 	
-	private ImageComponent curPicture;
-	private TextComponent curText;
+	private BufferedImage curPicture;
+	private String curText;
 
 	// Konstanten
 	public static final int ICONSIZE = 15;
@@ -357,7 +359,7 @@ public class MainFrame {
 		
 		mousecontpane.add(toolPalet);
 		
-		toolPalet.addTool(new SelTool(toolPalet));
+		toolPalet.addTool(new SelTool(toolPalet, model));
 		toolPalet.addTool(new LoupeTool(toolPalet));
 		//  TODO Add Tools
 		
@@ -520,7 +522,7 @@ public class MainFrame {
 				if (chooser.showOpenDialog(frame) == JFileChooser.APPROVE_OPTION) {
 					file = chooser.getSelectedFile();
 					try {
-						curPicture = new ImageComponent(file);
+						curPicture = ImageIO.read(file);
 					} catch (IOException e1) {
 						JOptionPane.showMessageDialog(frame, "Bild konnte nicht geladen werden.");
 					}

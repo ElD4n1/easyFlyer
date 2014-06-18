@@ -110,4 +110,16 @@ public class GuiApi_Impl implements GuiApi {
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public void addText(java.awt.TextComponent text) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public FlyerComponent getSelected() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

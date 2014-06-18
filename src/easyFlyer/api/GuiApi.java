@@ -93,14 +93,13 @@ public interface GuiApi {
 	 * @param me
 	 * 		the {@link MouseEvent} 
 	 */
-	public void chooseComponent(MouseEvent me);
+	public FlyerComponent chooseComponent(MouseEvent me);
 	
 	/**
 	 * Selcets a {@link FlyerComponent} in the panel and saves the selected
 	 * @param me
 	 * 		the {@link MouseEvent} 
 	 */
-<<<<<<< HEAD
 	
 	public void addText(TextComponent text);
 	
@@ -109,7 +108,7 @@ public interface GuiApi {
 	 * @return selected component
 	 */
 	public FlyerComponent getSelected();
-=======
+
 	public void addText(String text);
 	
 	/**

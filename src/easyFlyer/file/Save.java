@@ -1,5 +1,8 @@
 package easyFlyer.file;
 
+import java.awt.Graphics;
+import java.awt.Rectangle;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -9,9 +12,21 @@ import java.util.zip.ZipEntry;
 import java.util.zip.ZipException;
 import java.util.zip.ZipOutputStream;
 
+import javax.imageio.ImageIO;
+
 import easyFlyer.model.FlyerComponent;
 
 public class Save {
+	/**
+	 * Speichert die Komponent in der entsprechenden Datei und fügt den Header hinzu
+	 * 
+	 * @param components die Komponenten des Flyers
+	 * @param header Der Header der Datei
+	 * @param info @see {@link easyFlyer.file.Load#load(String...)} info-spezifikation
+	 * @throws ZipException
+	 * @throws IOException
+	 * @throws FileFormatNotSupportedException
+	 */
 	/* info: 0 - fileName / 1 - format / 2 - zipEntryName */
 	@SuppressWarnings("resource")
 	public static void save(ArrayList<FlyerComponent> components , Header header , String... info) 
@@ -53,6 +68,34 @@ public class Save {
 				oos = new ObjectOutputStream(new FileOutputStream(createFile(fileName)));
 			}
 			break;
+			
+			case "jpg":
+			{
+				int width = 0 , height = 0;
+				
+				for(FlyerComponent comp : components)
+				{
+					Rectangle bounds = comp.getBounds();
+					
+					int nx = bounds.x + bounds.width;
+					int ny = bounds.y + bounds.height;
+					
+					nx = (nx > width ? nx : width);
+					ny = (ny > height ? ny : height);
+				}
+				
+				BufferedImage tempImage = new BufferedImage(width , height , BufferedImage.TYPE_INT_RGB);
+				
+				Graphics g = tempImage.getGraphics();
+				for(FlyerComponent comp : components)
+				{
+					comp.paintComponent(g);
+				}
+				g.dispose();
+				
+				ImageIO.write(tempImage , "jpg" , createFile(fileName));
+			}
+			return;
 			
 			default:
 				throw new FileFormatNotSupportedException(format);

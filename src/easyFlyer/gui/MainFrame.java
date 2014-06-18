@@ -442,8 +442,11 @@ public class MainFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				DokumentSettingFrame settings = new DokumentSettingFrame();
 				JOptionPane.showMessageDialog(frame, settings.getContentpane());
-				System.out.println("Neues File erstellen" + settings.getName());
-				model.newFile(settings.getAutor(), settings.getDescripton(), settings.getName(), settings.getHeight(), settings.getWidth(), settings.getBorder()); //TODO complete
+				JFileChooser chooser = new JFileChooser();
+				if (chooser.showOpenDialog(frame) == JFileChooser.APPROVE_OPTION) {
+					File file = chooser.getSelectedFile();
+					model.newFile(settings.getAutor(), settings.getDescripton(), settings.getName(),file.getAbsolutePath(), settings.getHeight(), settings.getWidth(), settings.getBorder()); 
+				}
 			}
 		};
 		openFileHandler = new ActionListener() {

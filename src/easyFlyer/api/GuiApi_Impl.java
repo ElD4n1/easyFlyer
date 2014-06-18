@@ -1,5 +1,6 @@
 package easyFlyer.api;
 
+import java.awt.Graphics;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -21,9 +22,10 @@ public class GuiApi_Impl implements GuiApi {
 	private String author;
 	private String description;
 	private Flyer flyer;
+	private Graphics graphics;
 	
 	@Override
-	public void newFile(String author, String name, String filename, String description, int height, int width, int border) {
+	public void newFile(String author, String name, String filename, String description, int height, int width, int border, Graphics g) {
 		this.flyer = new Flyer(name, height, width, border);
 		this.author = author;
 		this.description = description;
@@ -107,5 +109,11 @@ public class GuiApi_Impl implements GuiApi {
 	@Override
 	public FlyerComponent getSelected() { //TODO
 		return null;
+	}
+
+	@Override
+	public void paintComponents() {
+		// TODO Auto-generated method stub
+		
 	}
 }

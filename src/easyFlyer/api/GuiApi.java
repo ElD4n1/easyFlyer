@@ -1,6 +1,7 @@
 
 package easyFlyer.api;
 
+import java.awt.Graphics;
 import java.awt.TextComponent;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
@@ -28,7 +29,7 @@ public interface GuiApi {
 	 * 		size of the border around the flyer
 	 * @return
 	 */
-	public void newFile(String author, String name, String filename, String description, int height, int width, int border);
+	public void newFile(String author, String name, String filename, String description, int height, int width, int border, Graphics g);
 	
 	/**
 	 * Loads a file and saves the flyer as model.
@@ -109,4 +110,6 @@ public interface GuiApi {
 	 * 		{@link MouseEvent} with coordinates
 	 */
 	public void removeComponent(MouseEvent event);
+	
+	public void paintComponents();
 }

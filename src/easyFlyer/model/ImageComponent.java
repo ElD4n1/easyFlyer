@@ -19,16 +19,12 @@ public class ImageComponent
 
 	private BufferedImage image;
 	
-	private File file;
-	
-	public ImageComponent(File file)
+	public ImageComponent(BufferedImage image)
 		throws IOException
 	{
-		image = ImageIO.read(file);
+		this.image = image;
 		
 		bounds.setSize(image.getWidth() , image.getHeight());
-	
-		this.file = file;
 	}
 	
 	public void paintComponent(Graphics g)
@@ -49,10 +45,10 @@ public class ImageComponent
 	}
 
 	@Override
-	public void updateImage(ImageUpdateEvent e)
+	public void updateImage(ImageUpdateEvent e) // TODO ?? Paul
 		throws IOException
 	{
-		image = ImageIO.read(file);
+		//image = ImageIO.read(file);
 		
 		bounds.setSize(image.getWidth() , image.getHeight());
 		

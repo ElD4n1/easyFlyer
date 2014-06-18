@@ -5,8 +5,8 @@ public class Format {
 	
 	
 	private final String name;
-	private final int width;
-	private final int height;
+	private int width;
+	private int height;
 	
 	public Format(String name, int width, int height){
 		this.name=name;
@@ -23,8 +23,23 @@ public class Format {
 		return height;
 	}
 	
+	public void setWidth(int width) {
+		this.width = width;
+	}
+
+
+	public void setHeight(int height) {
+		this.height = height;
+	}
+
+
 	@Override
 	public String toString(){
+		return name;
+	}
+
+
+	public String getName() {
 		return name;
 	}
 }

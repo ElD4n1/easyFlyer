@@ -87,7 +87,7 @@ public interface GuiApi {
 	 * @param image
 	 * 		image to add
 	 */
-	public void addPicture(BufferedImage image);
+	public void addPicture(BufferedImage image, int x, int y);
 	
 	/**
 	 * Selcets a {@link FlyerComponent} in the panel and saves the selected
@@ -96,7 +96,7 @@ public interface GuiApi {
 	 */
 	public FlyerComponent chooseComponent(MouseEvent me);
 	
-	public void addText(String text);
+	public void addText(String text, int x, int y);
 	
 	/**
 	 * Returns selected {@link FlyerComponent}

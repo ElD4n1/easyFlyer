@@ -1,5 +1,7 @@
 package easyFlyer.model.decorator;
 
+import java.awt.Rectangle;
+
 import easyFlyer.model.FlyerComponent;
 import easyFlyer.model.event.FlyerComponentEvent;
 
@@ -20,6 +22,7 @@ public abstract class Decorator
 	
 	protected Decorator(FlyerComponent component , int id)
 	{
+		super(component.getBounds());
 		content = component;
 		
 		fireComponentChanged(FlyerComponentEvent.COMPONENT_DECORATED);

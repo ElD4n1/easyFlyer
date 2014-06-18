@@ -18,6 +18,10 @@ public abstract class FlyerComponent
 	
 	private List<FlyerComponentListener> listeners = new ArrayList<FlyerComponentListener>();
 	
+	public FlyerComponent(Rectangle bounds){
+		this.bounds = bounds;
+	}
+	
 	public Rectangle getBounds(){
 		return bounds;
 	}

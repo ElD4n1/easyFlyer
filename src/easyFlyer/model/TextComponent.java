@@ -1,6 +1,7 @@
 package easyFlyer.model;
 
 import java.awt.Graphics;
+import java.awt.Rectangle;
 
 import easyFlyer.model.event.FlyerComponentEvent;
 
@@ -11,8 +12,9 @@ public class TextComponent
 
 	private String text;
 	
-	public TextComponent(String text)
+	public TextComponent(String text, int x, int y)
 	{
+		super(new Rectangle(x, y, 5, 15));
 		this.text = text;
 	}
 	

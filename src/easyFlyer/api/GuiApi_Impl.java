@@ -88,7 +88,7 @@ public class GuiApi_Impl implements GuiApi {
 	@Override
 	public void addPicture(BufferedImage image, int x, int y) {
 		try {
-			this.flyer.addComponent(new ImageComponent(image));
+			this.flyer.addComponent(new ImageComponent(image, x, y));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -104,7 +104,7 @@ public class GuiApi_Impl implements GuiApi {
 
 	@Override
 	public void addText(String text, int x, int y) {
-		this.flyer.addComponent(new TextComponent(text));
+		this.flyer.addComponent(new TextComponent(text, x, y));
 	}
 
 	@Override

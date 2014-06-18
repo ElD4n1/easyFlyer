@@ -1,6 +1,7 @@
 package easyFlyer.model;
 
 import java.awt.Graphics;
+import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -19,9 +20,10 @@ public class ImageComponent
 
 	private BufferedImage image;
 	
-	public ImageComponent(BufferedImage image)
+	public ImageComponent(BufferedImage image, int x, int y)
 		throws IOException
 	{
+		super(new Rectangle(x, y, image.getWidth(), image.getHeight()));
 		this.image = image;
 		
 		bounds.setSize(image.getWidth() , image.getHeight());

@@ -439,7 +439,7 @@ public class MainFrame {
 				DokumentSettingFrame settings = new DokumentSettingFrame();
 				JOptionPane.showMessageDialog(frame, settings.getContentpane());
 				System.out.println("Neues File erstellen" + settings.getName());
-				model.newFile(settings.getName(), settings.getHeight(), settings.getWidth(), settings.getBorder());
+				model.newFile(settings.getName(), settings.getHeight(), settings.getWidth(), settings.getBorder()); //TODO complete
 			}
 		};
 		openFileHandler = new ActionListener() {

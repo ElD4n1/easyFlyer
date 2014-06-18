@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.util.zip.ZipException;
 
 import easyFlyer.file.FileFormatNotSupportedException;
+import easyFlyer.file.Header;
 import easyFlyer.file.Load;
 import easyFlyer.file.Save;
 import easyFlyer.model.Flyer;
@@ -20,12 +21,12 @@ public class GuiApi_Impl implements GuiApi {
 	private Flyer flyer;
 	
 	@Override
-	public void newFile(String name, int height, int width, int border) {
+	public void newFile(String author, String name, String description, int height, int width, int border) {
 		// TODO Auto-generated method stub
 		this.flyer = new Flyer(name, height, width, border);
 		
 		try {
-			Save.save(flyer.getComponents(), null, filename, "temp"); //TODO header
+			Save.save(flyer.getComponents(), new Header(author, description), filename, "temp"); //TODO header
 		} catch (ZipException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

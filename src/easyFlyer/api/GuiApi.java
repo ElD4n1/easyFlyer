@@ -28,7 +28,7 @@ public interface GuiApi {
 	 * 		size of the border around the flyer
 	 * @return
 	 */
-	public void newFile(String name, int height, int width, int border);
+	public void newFile(String author, String name, String description, int height, int width, int border);
 	
 	/**
 	 * Loads a file and saves the flyer as model.
@@ -100,7 +100,6 @@ public interface GuiApi {
 	 * @param me
 	 * 		the {@link MouseEvent} 
 	 */
-	
 	public void addText(TextComponent text);
 	
 	/**

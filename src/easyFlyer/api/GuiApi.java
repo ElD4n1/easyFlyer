@@ -3,6 +3,7 @@ package easyFlyer.api;
 
 import java.awt.TextComponent;
 import java.awt.event.MouseEvent;
+import java.awt.image.BufferedImage;
 import java.io.File;
 
 import easyFlyer.model.FlyerComponent;
@@ -85,7 +86,7 @@ public interface GuiApi {
 	 * @param image
 	 * 		image to add
 	 */
-	public void addPicture(ImageComponent image);
+	public void addPicture(BufferedImage image);
 	
 	/**
 	 * Selcets a {@link FlyerComponent} in the panel and returns the component
@@ -101,5 +102,5 @@ public interface GuiApi {
 	 * @param text
 	 * 		{@link TextComponent} to add
 	 */
-	public void addText(TextComponent text);
+	public void addText(String text);
 }

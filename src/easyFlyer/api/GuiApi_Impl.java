@@ -23,6 +23,8 @@ public class GuiApi_Impl implements GuiApi {
 	private String description;
 	private Flyer flyer;
 	private Graphics graphics;
+	private MouseEvent selectedCoords;
+	private FlyerComponent selectedComponent;
 	
 	@Override
 	public void newFile(String author, String name, String filename, String description, int height, int width, int border, Graphics g) {
@@ -30,6 +32,7 @@ public class GuiApi_Impl implements GuiApi {
 		this.author = author;
 		this.description = description;
 		this.filename = filename;
+		this.graphics = g;
 		
 		try {
 			Save.save(flyer.getComponents(), new Header(author, description), filename, "temp"); 
@@ -83,7 +86,7 @@ public class GuiApi_Impl implements GuiApi {
 	}
 
 	@Override
-	public void addPicture(BufferedImage image) {
+	public void addPicture(BufferedImage image, int x, int y) {
 		try {
 			this.flyer.addComponent(new ImageComponent(image));
 		} catch (IOException e) {
@@ -92,12 +95,15 @@ public class GuiApi_Impl implements GuiApi {
 	}
 
 	@Override
-	public FlyerComponent chooseComponent(MouseEvent me) { //TODO
-		return null;
+	public FlyerComponent chooseComponent(MouseEvent me) {
+		int x = me.getX();
+		int y = me.getY();
+		
+		return null; //TODO
 	}
 
 	@Override
-	public void addText(String text) {
+	public void addText(String text, int x, int y) {
 		this.flyer.addComponent(new TextComponent(text));
 	}
 
@@ -108,7 +114,7 @@ public class GuiApi_Impl implements GuiApi {
 
 	@Override
 	public FlyerComponent getSelected() { //TODO
-		return null;
+		return this.selectedComponent;
 	}
 
 	@Override

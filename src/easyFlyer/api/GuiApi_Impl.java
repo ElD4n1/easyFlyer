@@ -17,24 +17,25 @@ import easyFlyer.model.TextComponent;
 
 public class GuiApi_Impl implements GuiApi {
 
-	private String filename; //TODO initializein newFile per Dialog
+	private String filename; 
+	private String author;
+	private String description;
 	private Flyer flyer;
 	
 	@Override
 	public void newFile(String author, String name, String filename, String description, int height, int width, int border) {
-		// TODO Auto-generated method stub
 		this.flyer = new Flyer(name, height, width, border);
+		this.author = author;
+		this.description = description;
+		this.filename = filename;
 		
 		try {
-			Save.save(flyer.getComponents(), new Header(author, description), filename, "temp"); //TODO header
+			Save.save(flyer.getComponents(), new Header(author, description), filename, "temp"); 
 		} catch (ZipException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (FileFormatNotSupportedException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -44,17 +45,15 @@ public class GuiApi_Impl implements GuiApi {
 		try {
 			Load.load(file.getName(), "esf");
 		} catch (IOException | FileFormatNotSupportedException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} // Name = Path??? with .ext???
+		}
 	}
 
 	@Override
 	public void saveFile(File file) {
 		try {
-			Save.save(flyer.getComponents(), null, filename, "esf"); // TODO Header, FileExt
+			Save.save(flyer.getComponents(), new Header(this.author, this.description), filename, "esf");
 		} catch (IOException | FileFormatNotSupportedException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -65,15 +64,11 @@ public class GuiApi_Impl implements GuiApi {
 	}
 
 	@Override
-	public void exportFile(File file) { //TODO ?? wegtun
-		// TODO Auto-generated method stub
-
+	public void exportFile(File file) { //TODO
 	}
 
 	@Override
 	public void exportFolder(File file) { //TODO wegtun??
-		// TODO Auto-generated method stub
-
 	}
 
 	@Override
@@ -90,14 +85,12 @@ public class GuiApi_Impl implements GuiApi {
 		try {
 			this.flyer.addComponent(new ImageComponent(image));
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 
 	@Override
-	public FlyerComponent chooseComponent(MouseEvent me) {
-		// TODO Auto-generated method stub
+	public FlyerComponent chooseComponent(MouseEvent me) { //TODO
 		return null;
 	}
 
@@ -108,19 +101,11 @@ public class GuiApi_Impl implements GuiApi {
 
 	@Override
 	public void removeComponent(MouseEvent event) {
-		// TODO Auto-generated method stub
-		
+		//TODO
 	}
 
 	@Override
-	public void addText(java.awt.TextComponent text) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public FlyerComponent getSelected() {
-		// TODO Auto-generated method stub
+	public FlyerComponent getSelected() { //TODO
 		return null;
 	}
 }

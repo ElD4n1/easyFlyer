@@ -435,7 +435,7 @@ public class MainFrame {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				DokumentSettingFrame settings = new DokumentSettingFrame();
-				JOptionPane.showMessageDialog(frame, settings);
+				JOptionPane.showMessageDialog(frame, settings.getContentpane());
 				System.out.println("Neues File erstellen" + settings.getName());
 				model.newFile(settings.getName(), settings.getHeight(), settings.getWidth(), settings.getBorder());
 			}

@@ -48,7 +48,7 @@ public class LoupeTool extends Tool {
 	 *            the shape model
 	 */
 	public LoupeTool(ToolPalette palette) {  //TODO Model in Konstruktor einfügen
-		super("Zoom", new ImageIcon("icons/lupe.jpg"), palette);
+		super("Zoom", new ImageIcon("icons/loupe.jpg"), palette);
 		// TODO Model speichern
 		putValue(Action.SHORT_DESCRIPTION, "Selection tool");
 	}

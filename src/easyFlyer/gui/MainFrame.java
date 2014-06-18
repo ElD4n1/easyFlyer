@@ -47,8 +47,7 @@ public class MainFrame {
 	// Felder für textcontrolpanel
 	private final String[] POSITIONSTRING = { "Linksbündig", "Mittig",
 			"Rechtsbündig" };
-	// private final Font[] FONTLIST =
-	// GraphicsEnvironment.getLocalGraphicsEnvironment().getAllFonts();
+	private JTextArea text;
 	private final String[] FONTSTRING = GraphicsEnvironment
 			.getLocalGraphicsEnvironment().getAvailableFontFamilyNames();
 	private final ListColor[] COLORLIST = { new ListColor("Schwarz", Color.black), new ListColor("Grau", Color.gray), new ListColor("Hellgrau", Color.lightGray), new ListColor("Weis", Color.white), new ListColor("Blau", Color.blue), new ListColor("Rot", Color.red), new ListColor("Grün", Color.green), new ListColor("Gelb", Color.yellow), new ListColor("Pink", Color.pink)};
@@ -261,8 +260,7 @@ public class MainFrame {
 		JPanel tsizepane = new JPanel();
 		JPanel tcolorpane = new JPanel();
 		JPanel tpositionpane = new JPanel();
-		
-
+	
 
 		tfontpane.setLayout(new FlowLayout(FlowLayout.LEADING));
 		tsizepane.setLayout(new FlowLayout(FlowLayout.LEADING));
@@ -276,6 +274,8 @@ public class MainFrame {
 		tsizefield.setPreferredSize(NUMBERFIELD_DIMENSION);
 		tcolorchooser = new JComboBox<ListColor>(COLORLIST);
 		tposition = new JComboBox<String>(POSITIONSTRING);		
+		text = new JTextArea();
+		text.setPreferredSize(new Dimension(250, 240));
 		
 		tfontchooser.addActionListener(textchangedHandler);
 		tsizefield.addActionListener(textchangedHandler);
@@ -299,6 +299,7 @@ public class MainFrame {
 		pane.add(tsizepane);
 		pane.add(tcolorpane);
 		pane.add(tpositionpane);
+		pane.add(text);
 //		pane.add(ttranspane);
 	}
 
@@ -456,9 +457,9 @@ public class MainFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				model.chooseComponent(e);
-				
 			}
 		});
+		
 
 		contentpane.add(edittoolPanel, BorderLayout.NORTH);
 		contentpane.add(drawingPanel, BorderLayout.CENTER);
@@ -627,7 +628,7 @@ public class MainFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				
-				model.addText(curText);
+				model.addText("neuer Text");
 				
 				
 			}

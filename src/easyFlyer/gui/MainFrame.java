@@ -17,7 +17,8 @@ import javax.swing.event.ChangeListener;
 import easyFlyer.api.GuiApi;
 import easyFlyer.api.GuiApi_Impl;
 import easyFlyer.dataTypes.ListColor;
-import easyFlyer.model.ImageComponent;
+
+
 import easyFlyer.tools.LoupeTool;
 import easyFlyer.tools.SelTool;
 import easyFlyer.tools.ToolPalette;
@@ -30,7 +31,6 @@ public class MainFrame {
 	GuiApi model;
 	
 	private BufferedImage curPicture;
-	private String curText;
 
 	// Konstanten
 	public static final int ICONSIZE = 15;
@@ -387,6 +387,7 @@ public class MainFrame {
 		frame = new JFrame("easyFlyer");
 		frame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 
+		
 		// Handler erzeugen
 		initHandler();
 		
@@ -481,7 +482,7 @@ public class MainFrame {
 				JFileChooser chooser = new JFileChooser();
 				if (chooser.showOpenDialog(frame) == JFileChooser.APPROVE_OPTION) {
 					File file = chooser.getSelectedFile();
-					model.newFile(settings.getAutor(), settings.getDescripton(), settings.getName(),file.getPath(), settings.getHeight(), settings.getWidth(), settings.getBorder()); 
+					model.newFile(settings.getAutor(), settings.getDescripton(), settings.getName(),file.getPath(), settings.getHeight(), settings.getWidth(), settings.getBorder(), drawingPanel.getGraphics()); 
 				}
 			}
 		};

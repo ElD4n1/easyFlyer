@@ -17,10 +17,11 @@ public class Header
 	public Header(String author, String description){
 		this.author = author;
 		this.description = description;
-		// TODO creationDate = Systemzeit
+		
+		creationDate = new Date();
 	}
 	
 	public void setCreationDate(Date date){
-		//TODO
+		creationDate = date;
 	}
 }
